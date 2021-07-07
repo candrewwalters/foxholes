@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Foxhole Card Generator</title>
+    </head>
+
+    <script>
+
+//        Establish Variables
+
+        function initializeApp() {
+
+          // for ( let i=1; i<61 ; i++ ) {
+          //
+          //   document.getElementById("cards").innerHTML += "<div class='cardDiv' id='cardNum"+i+"'>&nbsp;</div>";
+          //
+          //
+          // }
+
+
+
+
+        }
+
+        function generateCards() {
+
+          // moveCards=9;
+          //
+          // for ( let i=1; i<moveCards; i++ ) {
+          //   document.getElementById('cardNum'+i).innerHTML += "<div class='cardTitle'>Move</div>"
+          //
+          // }
+
+          userLines = document.getElementById("csvTextArea").value.split("\n");
+
+          forceName = userLines[0].split(',')[1];
+
+          for ( i=2; i<userLines.length; i++ ) {
+
+            thisCard = userLines[i].split(',');
+
+            newCard = "<div class='cardSpacer'></div>";
+            newCard += "<div class='cardDiv'>"
+
+            newCard += "<div class='cardTitle'>" + thisCard[1] + "</div>";
+
+            newCard += "<div class='cardSpacer'></div>";
+
+
+            newCard += "<div class='cardInstructions'>" + thisCard[2]
+            + "<br>" + thisCard[3] + "<br>" + thisCard[4] + "</div>";
+
+            newCard += "<div class='cardSpacer'></div>";
+            newCard += "<div class='cardSpacer'></div>";
+
+            newCard += "<div class='cardSkillCheck'>"+thisCard[5]+"</div>";
+
+            if ( thisCard[1] ==  "Move" ) {
+              newCard+="<img src='boot.png' class='cardImage'>"
+            }
+
+            if ( thisCard[1] ==  "Fire" ) {
+              newCard+="<img src='rifle.png' class='cardImage'>"
+            }
+
+            if ( thisCard[1] ==  "Trees" ) {
+              newCard+="<img src='trees.jpeg' class='cardImage'>"
+            }
+
+            newCard += "<div class='cardValor'>"+thisCard[6]+"</div>";
+            newCard += "<div class='cardSpacer'></div>";
+            newCard += "<div class='cardArmor'>"+thisCard[7]+"</div>";
+
+            newCard +=  "<div class='cardID'>" + forceName + " card #" + (i-1) + "</div>";
+
+            newCard +="</div>";
+
+            document.getElementById("cards").innerHTML += newCard;
+
+          }
+
+//          document.getElementById("pasteHere").style.display="none";
+
+        }
+
+
+    </script>
+
+    <style>
+
+        .niftyButton {
+            border: solid thin;
+            margin: 0.5vh;
+            border-radius: 10px;
+            padding: 0.25vh 1vh;
+            text-align: center;
+            box-shadow: 0.2vh 0.4vh;
+            float: right;
+
+        }
+
+        .cardDiv {
+          border: solid thin;
+          margin: 0.5vh;
+          border-radius: 10px;
+          padding: 0.25vh 1vh;
+          width: 60mm;
+          height: 85mm;
+          text-align: center;
+          position: relative;
+
+
+
+        }
+
+        .cardSpacer{
+          height: 4mm;
+        }
+
+        .cardTitle{
+          font-size: 10mm;
+          font-family: Helvetica;
+          font-weight: bold;
+
+        }
+
+        .cardInstructions {
+
+        }
+
+        .cardSkillCheck {
+          font-size: 6mm;
+          font-family: Helvetica;
+          position: absolute;
+          right: 5mm;
+          border: solid thin;
+          border-radius: 4mm;
+          width: 6mm;
+        }
+
+        .cardImage {
+          height: 20mm;
+        }
+
+        .cardValor {
+          border: solid thin;
+          background: lightgrey;
+        }
+
+        .cardArmor {
+          border: solid thin;
+          background: grey;
+        }
+
+        .cardID {
+          position: absolute;
+          text-align: center;
+          bottom: 0;
+          left: 25%
+        }
+
+    </style>
+
+    <body onLoad="initializeApp()"  style = "overflow: scroll;">
+
+<div id="pasteHere">
+
+Paste CSV here:
+<textarea id="csvTextArea" rows="10" cols="40" style="vertical-align: text-top" oninput="generateCards();"></textarea>
+
+<textarea id="sampleTextArea" rows="10" cols="40" style="vertical-align: text-top" oninput="generateCards();">
+Force Name,Army!,,,,,,
+Card Number,Type,Instructions,,,Skill Check,Valor Result,Effects Portion
+1,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,1,AD: Snafu,AP results here
+2,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,2,A,AP results here
+3,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,3,A,AP results here
+4,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,4,A,AP results here
+5,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,5,A,AP results here
+6,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,6,BD,AP results here
+7,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,7,B,AP results here
+8,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,8,B,AP results here
+9,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,9,B,AP results here
+10,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,0,BC,AP results here
+11,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,1,D,AP results here
+12,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,2,D,AP results here
+13,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,3,D,AP results here
+14,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,4,D,AP results here
+15,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,5,D,AP results here
+16,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,6,D,AP results here
+17,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,7,D,AP results here
+18,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,8,D,AP results here
+19,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,9,D,AP results here
+20,Fire, +1 Effect card if FP>5,"AP: 1 shot, 2 in Clear terrain",,0,D,AP results here
+21,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,1,D,AP results here
+22,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,2,D,AP results here
+23,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,3,D,AP results here
+24,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,4,D,AP results here
+25,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,5,D,AP results here
+26,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,6,E,AP results here
+27,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,7,E,AP results here
+28,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,8,E,AP results here
+29,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,9,E,AP results here
+30,Trees, 1/2 FP for incoming attacks,Mortars have double effect,,0,E,AP results here
+31,Recover,Any 1 soldier,,,1,E,AP results here
+32,Recover,Any 1 soldier,,,2,E,AP results here
+33,Recover,Any 1 soldier,,,3,E,AP results here
+34,Recover,Any 1 soldier,,,4,E,AP results here
+35,Recover,Any 1 soldier,,,5,F,AP results here
+36,Recover,Any 1 soldier,,,6,F,AP results here
+37,Recover,Any 1 soldier,,,7,F,AP results here
+38,Recover,Any 1 soldier,,,8,F,AP results here
+39,Recover,Any 1 soldier,,,9,F,AP results here
+40,Recover,All Soldiers,,,0,G,AP results here
+41,Cover & Conceal, -2 Effect cards ,,,1,G,AP results here
+42,Cover & Conceal, -2 Effect cards ,,,2,G,AP results here
+43,Cover & Conceal, -2 Effect cards ,,,3,G,AP results here
+44,Cover & Conceal, -2 Effect cards ,,,4,GG,AP results here
+45,Cover & Conceal, -2 Effect cards ,,,5,H,AP results here
+46,Cover & Conceal, -2 Effect cards ,,,6,H,AP results here
+47,Cover & Conceal, -2 Effect cards ,,,7,H,AP results here
+48,Cover & Conceal, -2 Effect cards ,,,8,H,AP results here
+49,Cover & Conceal, -2 Effect cards ,,,9,H,AP results here
+50,Cover & Conceal, -2 Effect cards ,,,0,H,AP results here
+51,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,1,I,AP results here
+52,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,2,I,AP results here
+53,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,3,I,AP results here
+54,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,4,II,AP results here
+55,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,5,I,AP results here
+56,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,6,I,AP results here
+57,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,7,I,AP results here
+58,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,8,I,AP results here
+59,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,9,I,AP results here
+60,Move,Double FP of automatic weapons firing at this group,+1 Effect card at Range 2,+2 Effect cards at Range 1,0,I,AP results here
+</textarea><br><br>
+
+
+
+<!--
+<div class="niftyButton" onclick="generate();">
+  Generate!
+</div> -->
+
+</div>
+
+      <div id="cards" style="display: flex;flex-wrap: wrap"></div>
+
+
+      <img src="boot.png" id='move' style="display: none;">
+      <img src="rifle.png" id='fire' style="display: none;">
+      <img src="trees.jpeg" id='trees' style="display: none;">
+
+    </body>
+
+
+</html>

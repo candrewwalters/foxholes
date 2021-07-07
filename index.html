@@ -27,18 +27,13 @@
 
         function generateCards() {
 
-          // moveCards=9;
-          //
-          // for ( let i=1; i<moveCards; i++ ) {
-          //   document.getElementById('cardNum'+i).innerHTML += "<div class='cardTitle'>Move</div>"
-          //
-          // }
+          document.getElementById("cards").innerHTML = "";
 
           userLines = document.getElementById("csvTextArea").value.split("\n");
 
           forceName = userLines[0].split(',')[1];
 
-          for ( i=2; i<userLines.length; i++ ) {
+          for ( i=2; i<userLines.length-1; i++ ) {
 
             thisCard = userLines[i].split(',');
 
@@ -170,6 +165,7 @@
 
 Paste CSV here:
 <textarea id="csvTextArea" rows="10" cols="40" style="vertical-align: text-top" oninput="generateCards();"></textarea>
+
 <!--
 <textarea id="sampleTextArea" rows="10" cols="40" style="vertical-align: text-top; display: none;" oninput="generateCards();">
 Force Name,Army!,,,,,,
